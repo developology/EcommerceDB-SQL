@@ -313,3 +313,61 @@ COUNT(Reviews.ReviewID) AS TotalReviews
 FROM Customers 
 JOIN Reviews ON Customers.CustomerID = Reviews.CustomerID 
 GROUP BY Customers.CustomerID, Customers.Name;
+
+
+-- 40. Count reviews given per customer. 
+ 
+SELECT Customers.Name,  
+COUNT(Reviews.ReviewID) AS TotalReviews 
+FROM Customers 
+JOIN Reviews ON Customers.CustomerID = Reviews.CustomerID 
+GROUP BY Customers.CustomerID, Customers.Name;
+
+-- 41. Show the total number of orders placed by each customer.
+SELECT Customers.Name, COUNT(Orders.OrderID) AS Total_Orders
+FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Customers.CustomerID;
+
+
+-- 42.	Find all products that belong to the ‘Laptops’ category.
+SELECT Products.Name
+FROM Products
+JOIN Categories ON Products.CategoryID = Categories.CategoryID
+WHERE Categories.CategoryName = 'Laptops';
+
+
+-- 43. Show names of customers who placed orders.
+SELECT DISTINCT Customers.Name
+FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+-- 44. Find all products that cost more than ₹1500.
+SELECT Name, Price FROM Products
+WHERE Price > 1500;
+
+
+-- 45. Count total number of customers.
+SELECT COUNT(*) AS Total_Customers FROM Customers;
+
+-- 46. Get total number of orders placed.
+SELECT COUNT(*) AS Total_Orders FROM Orders;
+
+-- 47. List customer names and their email IDs.
+SELECT Name, Email FROM Customers;
+
+-- 48. Show the first 5 products from the Products table.
+SELECT * FROM Products
+LIMIT 5;
+
+-- 49. Find the highest priced product.
+SELECT Name, Price 
+FROM Products 
+ORDER BY Price DESC 
+LIMIT 1;
+
+-- 50. Show the total number of products in each category.
+SELECT Categories.CategoryName, COUNT(Products.ProductID) AS Total_Products 
+FROM Categories 
+JOIN Products ON Categories.CategoryID = Products.CategoryID 
+GROUP BY Categories.CategoryName;
